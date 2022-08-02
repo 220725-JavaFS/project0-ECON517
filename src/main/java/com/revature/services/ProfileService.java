@@ -1,8 +1,7 @@
 package com.revature.services;
 
+import com.revature.dao.ProfileRepoTest;
 import com.revature.models.Profiles;
-
-import DAO.ProfileRepoTest;
 
 public class ProfileService {
 

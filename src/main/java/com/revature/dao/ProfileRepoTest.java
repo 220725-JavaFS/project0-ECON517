@@ -1,4 +1,4 @@
-package DAO;
+package com.revature.dao;
 
 import com.revature.models.Profiles;
 
