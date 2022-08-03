@@ -4,12 +4,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 import com.revature.models.Profiles;
-import com.revature.services.ProfileService;
+import com.revature.services.Service;
 
-public class RegisterController {
+public class Controller {
 
 	private Scanner scan = new Scanner(System.in);
-	private ProfileService profileService = new ProfileService();
+	private Service service = new Service();
 	// connect controller object to service layer
 
 	public void register() {
@@ -53,12 +53,12 @@ public class RegisterController {
 			return;
 		}
 
-		System.out.println("Registration is complete:" + "\n\n" + firstName + " " + lastName + "\n" + address + "\n"
+		System.out.println("\nRegistration is complete:" + "\n" + firstName + " " + lastName + "\n" + address + "\n"
 				+ phone + "\n\nLogin Inforamtion:" + "\nUser name - " + userName + "\nPassword  - " + password);
 
 		Profiles user = new Profiles(userName, password, firstName, lastName, idNumber, address, phone);
 
-		profileService.newProfile(user);
+		service.newProfile(user);
 		// link to service through user object w/ parameters method call
 		// **video 1:14**
 	}
