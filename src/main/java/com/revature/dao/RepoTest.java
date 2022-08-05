@@ -2,7 +2,7 @@ package com.revature.dao;
 
 import com.revature.models.Profiles;
 
-public class ProfileRepoTest {
+public class RepoTest {
 
 	private Profiles[] profiles = new Profiles[14];
 
@@ -24,5 +24,11 @@ public class ProfileRepoTest {
 		}
 		return null;
 	}
-
+	
+	public void getProfile() {
+		for(int i=0; i<profiles.length; i++)
+			System.out.println(profiles[i]);
+			
+		
+	}
 }

@@ -6,24 +6,36 @@ public class Profiles {
 
 	private String firstName;
 	private String lastName;
-	private String address;
-	private String phone;
+	private String zip;
+	private String email;
 	private int profileId;
+	private int acctNum;
 	private String userName;
 	private String password;
-
+	
 	public Profiles() {
 		super();
 	}
 
-	public Profiles(String firstName, String lastName, String address, String phone, int profileId, String userName,
-			String password) {
+	public Profiles(String firstName, String lastName, String zip, String email, int profileId, int acctNum,
+			String userName, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.address = address;
-		this.phone = phone;
+		this.zip = zip;
+		this.email = email;
 		this.profileId = profileId;
+		this.acctNum = acctNum;
+		this.userName = userName;
+		this.password = password;
+	}
+	
+	public Profiles(String firstName, String lastName, String zip, String email, String userName, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.zip = zip;
+		this.email = email;
 		this.userName = userName;
 		this.password = password;
 	}
@@ -44,20 +56,20 @@ public class Profiles {
 		this.lastName = lastName;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getZip() {
+		return zip;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setZip(String zip) {
+		this.zip = zip;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public int getProfileId() {
@@ -66,6 +78,14 @@ public class Profiles {
 
 	public void setProfileId(int profileId) {
 		this.profileId = profileId;
+	}
+
+	public int getAcctNum() {
+		return acctNum;
+	}
+
+	public void setAcctNum(int acctNum) {
+		this.acctNum = acctNum;
 	}
 
 	public String getUserName() {
@@ -86,7 +106,7 @@ public class Profiles {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, firstName, lastName, password, phone, profileId, userName);
+		return Objects.hash(acctNum, email, firstName, lastName, password, profileId, userName, zip);
 	}
 
 	@Override
@@ -98,16 +118,22 @@ public class Profiles {
 		if (getClass() != obj.getClass())
 			return false;
 		Profiles other = (Profiles) obj;
-		return Objects.equals(address, other.address) && Objects.equals(firstName, other.firstName)
-				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
-				&& Objects.equals(phone, other.phone) && Objects.equals(profileId, other.profileId)
-				&& Objects.equals(userName, other.userName);
+		return acctNum == other.acctNum && Objects.equals(email, other.email)
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName)
+				&& Objects.equals(password, other.password) && profileId == other.profileId
+				&& Objects.equals(userName, other.userName) && Objects.equals(zip, other.zip);
 	}
 
 	@Override
 	public String toString() {
-		return "Profiles [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", phone="
-				+ phone + ", profileId=" + profileId + ", userName=" + userName + ", password=" + password + "]";
+		return "Profiles [firstName=" + firstName + ", lastName=" + lastName + ", zip=" + zip + ", email=" + email
+				+ ", profileId=" + profileId + ", acctNum=" + acctNum + ", userName=" + userName + ", password="
+				+ password + "]";
 	}
+
+	
+	
+	
+	
 
 }
