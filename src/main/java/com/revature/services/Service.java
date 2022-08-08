@@ -27,4 +27,16 @@ public class Service {
 	public Profiles login(Profiles logon) {
 		return linkDAO.loginCredentials(logon);
 	}
+	
+	public Accounts balance(Accounts account) {
+		return linkDAO.balance(account);
+	}
+	
+	public Accounts deposit(Accounts account, double deposit) {
+		return linkDAO.deposit(account, deposit);
+	}
+	
+	public Accounts withdraw(Accounts account, double withdraw) {
+		return linkDAO.withdraw(account, withdraw);
+	}
 }

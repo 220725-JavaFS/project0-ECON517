@@ -12,6 +12,11 @@ public interface DAO {
 	
 	Accounts createAccount(Accounts account);
 	
+	Accounts balance(Accounts balance);
 	
+	Accounts deposit(Accounts account, double deposit);
+
+	Accounts withdraw(Accounts account, double withdraw);
+		
 
 }
