@@ -33,6 +33,7 @@ public class Service {
 	}
 	
 	public Accounts deposit(Accounts account, double deposit) {
+			 //deposit = account.getAccBalance()+deposit;	
 		return linkDAO.deposit(account, deposit);
 	}
 	

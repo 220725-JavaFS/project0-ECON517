@@ -11,7 +11,8 @@ public class Driver {
 		
 		controller.userMenu();
 		
-		controller.userMenu();
+		
+		
 		
 		
 		

@@ -26,10 +26,9 @@ public class Accounts {
 		this.accWithdraw = accWithdraw;
 	}
 
-	public Accounts(int profileId, int acctNum, String accType, double accBalance) {
+	public Accounts(int profileId, String accType, double accBalance) {
 		super();
 		this.profileId = profileId;
-		this.acctNum = acctNum;
 		this.accType = accType;
 		this.accBalance = accBalance;
 	}
