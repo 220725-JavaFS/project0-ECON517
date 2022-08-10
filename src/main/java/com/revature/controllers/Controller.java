@@ -11,22 +11,26 @@ public class Controller {
 
 	private Service service = new Service();
 	private Profiles newPro = new Profiles();
-	// private Profiles rNewPro = new Profiles();
 	private Accounts newAcct = new Accounts();
 
 	// connect controller object to service layer
 
 	public void userMenu() {
 
-		System.out.println("Welcome to Alchemy Bank");
+		System.out.println("===============================");
+		System.out.println("==  Welcome to Alchemy Bank  ==");
 
 		String choice = "";
 		menuLoop: while (!choice.equalsIgnoreCase("3")) {
-			System.out.println(
-					"Please select an option:" + "\n1. Create new profile" + "\n2. Existing User" + "\n3. Exit");
+			System.out.println("\n==  Please select an option:  =");
+			System.out.println("===============================");
+			System.out.println("\n   1. Create new profile  ");
+			System.out.println("\n   2. Existing User       ");
+			System.out.println("\n   3. Exit                ");
+			System.out.println("===============================");
 			choice = input.nextLine();
 
-			// Switch statement
+			
 			switchChoice: switch (choice) {
 			case "1":
 				register();
@@ -35,9 +39,11 @@ public class Controller {
 				existingUser();
 				break switchChoice;
 			case "3":
+				System.out.println("===================================");
 				System.out.println("Thank you for using banking system.");
 				System.exit(0);
 			default:
+				System.out.println("=============================================");
 				System.out.println("That is not a valid option, please try again.");
 				break switchChoice;
 			}
@@ -47,40 +53,42 @@ public class Controller {
 
 	public void register() {
 
-		System.out.println("\n=========================================================");
-		System.out.println("\nWelcome! We will start with creating profile.");
+		
+		System.out.println("\nWe will start with creating profile.");
+		System.out.println("======================================");
 
-		System.out.println("Enter your first name:");
+		System.out.println("\nEnter your first name:");
 		String firstName = input.nextLine();
 		if (firstName.equals("")) {
 			return;
 		}
 
-		System.out.println("Enter your last name:");
+		System.out.println("\nEnter your last name:");
 		String lastName = input.nextLine();
 		if (lastName.equals("")) {
 			return;
 		}
 
-		System.out.println("Enter Zip Code:");
+		System.out.println("\nEnter Zip Code:");
 		String zip = input.nextLine();
 		if (zip.equals("")) {
 			return;
 		}
 
-		System.out.println("Enter Email Address:");
+		System.out.println("\nEnter Email Address:");
 		String email = input.nextLine();
 		if (email.equals("")) {
 			return;
 		}
 
-		System.out.println("Enter a username:");
+		System.out.println("\nEnter a username:");
 		String userName = input.nextLine();
 		if (userName.equals("")) {
 			return;
 		}
 
-		System.out.println("Enter a password:");
+		System.out.println("\nEnter a password:");
+		System.out.println("===================================");
 		String password = input.nextLine();
 		if (password.equals("")) {
 			return;
@@ -124,7 +132,8 @@ public class Controller {
 
 				// customerMenu();
 			} else {
-				System.out.println("Username or Password is incorrect." + "\nWould you like to try again else: y or n");
+				System.out.println("===================================");
+				System.out.println("\nUsername or Password is incorrect." + "\nWould you like to try again else: y or n");
 				proceed = input.nextLine();
 			}
 			/*
@@ -142,12 +151,12 @@ public class Controller {
 		while (!choice.equalsIgnoreCase("4")) {
 
 			// menuLoop:
-			System.out.println("==============================");
+			System.out.println("===================================");
 			System.out.println("         Customer Menu        ");
 			System.out.println("Please select one of the following:");
-			System.out.println("==============================");
+			System.out.println("===================================");
 			System.out.println("\n1. Deposit funds" + "\n2. Withdraw Funds" + "\n3. Account Balance" + "\n4. Exit");
-			System.out.println("==============================");
+			System.out.println("\n===================================");
 
 			choice = input.nextLine();
 			switchChoice: switch (choice) {
@@ -157,20 +166,23 @@ public class Controller {
 				while (!choice2.equalsIgnoreCase("n")) {
 
 									
-					System.out.println("How much would you like to deposit: ");
-					double deposit = input.nextDouble();
-
+					System.out.println("\nHow much would you like to deposit: ");
 					try {
-						service.deposit(newAcct, deposit);
+					double deposit = input.nextDouble();
+					service.deposit(newAcct, deposit);
+					System.out.println("===================================");
+					System.out.println("\nDeposit of "+deposit+" was successful!");
+					System.out.println("Would you like to make a another deposit? y or n");
+					choice2 = input.nextLine();
+					choice2 = input.nextLine();
 					} catch (Exception e) {
-						System.out.println("Seems to be a problem, would like to continue? y or n");
+						System.out.println("===================================");
+						System.out.println("Seems to be a problem...");
 						// e.printStackTrace();
 						input.nextLine();
 					}
 					
-					System.out.println("Would you like to make a another deposit? y or n");
-					choice2 = input.nextLine();
-					choice2 = input.nextLine();
+					
 				}
 					continue;
 			case "2":
@@ -178,23 +190,27 @@ public class Controller {
 				String choice3 = "";
 				while (!choice3.equalsIgnoreCase("n")) {
 					Accounts balance = service.balance(newAcct);
-					System.out.println("Account balance: " + balance);
-					System.out.println("How much would you like to withdraw: ");
-					double withdraw = input.nextDouble();
+					//System.out.println("Account balance: " + balance);
+					System.out.println("\nHow much would you like to withdraw: ");
+					
 					try {
-						service.withdraw(newAcct, withdraw);
+					double withdraw = input.nextDouble();
+					service.withdraw(newAcct, withdraw);
+					System.out.println("===================================");
+					System.out.println("Withdrawl of "+withdraw+" was successful!");
+					System.out.println("Would you like to make a withdraw? y or n");
+					choice3 = input.nextLine();
+					choice3 = input.nextLine();
 					} catch (Exception e) {
-						System.out.println("Seems to be a problem, would like to continue? y or n");
+						System.out.println("===================================");
+						System.out.println("Seems to be a problem..");
 						// e.printStackTrace();
 						input.nextLine();
-
 					}
 
-					// System.out.println("Your balance is: "+ balance.getAccBalance());
-					System.out.println("Would you like to make a withdraw? y or n");
-					input.nextLine();
-					break switchChoice;
+					
 				}
+					continue;
 			case "3":
 
 				Accounts balance = service.balance(newAcct);
@@ -208,8 +224,14 @@ public class Controller {
 
 			default:
 
-				System.out.println("Invalid choice, please choose another option.");
-				break switchChoice;
+				System.out.println("Invalid choice");
+				System.out.println("Would you like to continue. y or n");
+				choice3 = input.nextLine();
+				if(choice3.equals("n")) {
+					System.out.println("Thank you and have a nice day!");
+					System.exit(0);
+				}
+				break;
 
 			}
 

@@ -40,12 +40,12 @@ public class DAOImpl implements DAO {
 			ResultSet result = statement.executeQuery(query);
 			if (result.next()) {
 				profile.setProfileId(result.getInt(1));
-				
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return profile;
 	}
 
@@ -69,16 +69,16 @@ public class DAOImpl implements DAO {
 
 	@Override
 	public Accounts balance(Accounts account) {
-		
-		try(Connection conn = ConnectionUtil.getConnection()) {
-			String query = "SELECT acctnum, accbalance FROM accounts WHERE profileid="+account.getProfileId();
+
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String query = "SELECT acctnum, accbalance FROM accounts WHERE profileid=" + account.getProfileId();
 			Statement statement = conn.createStatement();
 			ResultSet result = statement.executeQuery(query);
-			if(result.next()) {
+			if (result.next()) {
 				account.setAcctNum(result.getInt(1));
 				account.setAccBalance(result.getInt(2));
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -87,32 +87,31 @@ public class DAOImpl implements DAO {
 
 	@Override
 	public Accounts deposit(Accounts account, double deposit) {
-		
-		try(Connection conn = ConnectionUtil.getConnection()) {
-			String query = "SELECT acctnum FROM accounts WHERE profileid="+account.getProfileId()+"";
+
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String query = "SELECT acctnum FROM accounts WHERE profileid=" + account.getProfileId() + "";
 			Statement statement = conn.createStatement();
 			ResultSet result = statement.executeQuery(query);
-			if(result.next()) {
+			if (result.next()) {
 				account.setAcctNum(result.getInt(1));
-				//account.setAccBalance(result.getInt(2));
+				// account.setAccBalance(result.getInt(2));
 			}
-				
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try(Connection conn = ConnectionUtil.getConnection()) {
-			String query1 = "SELECT accbalance FROM accounts WHERE profileid="+account.getProfileId()+"";
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String query1 = "SELECT accbalance FROM accounts WHERE profileid=" + account.getProfileId() + "";
 			Statement statement1 = conn.createStatement();
 			ResultSet result1 = statement1.executeQuery(query1);
-			if(result1.next()) {
+			if (result1.next()) {
 				double cbal = result1.getDouble(1);
 				double ubal = cbal + deposit;
 				Statement statement2 = conn.createStatement();
-				String query2 = "UPDATE accounts SET accbalance= "+ (ubal)+"WHERE acctnum= "+account.getAcctNum();
+				String query2 = "UPDATE accounts SET accbalance= " + (ubal) + "WHERE acctnum= " + account.getAcctNum();
 				double nbal = statement2.executeUpdate(query2);
 			}
-			 			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -122,6 +121,34 @@ public class DAOImpl implements DAO {
 	@Override
 	public Accounts withdraw(Accounts account, double withdraw) {
 
-		return null;
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String query = "SELECT acctnum FROM accounts WHERE profileid=" + account.getProfileId() + "";
+			Statement statement = conn.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			if (result.next()) {
+				account.setAcctNum(result.getInt(1));
+				// account.setAccBalance(result.getInt(2));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String query1 = "SELECT accbalance FROM accounts WHERE profileid=" + account.getProfileId() + "";
+			Statement statement1 = conn.createStatement();
+			ResultSet result1 = statement1.executeQuery(query1);
+			if (result1.next()) {
+				double cbal = result1.getDouble(1);
+				double ubal = cbal - withdraw;
+				Statement statement2 = conn.createStatement();
+				String query2 = "UPDATE accounts SET accbalance= " + (ubal) + "WHERE acctnum= " + account.getAcctNum();
+				double nbal = statement2.executeUpdate(query2);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return account;
+
 	}
 }
